@@ -50,7 +50,7 @@
 pipeline {
     agent any
     triggers {
-        cron('* * * * *')
+        cron('* */23.59 * * *')
         pollSCM('* * * * *')
     }
     stages {
