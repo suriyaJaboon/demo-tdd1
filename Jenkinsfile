@@ -4,20 +4,26 @@ pipeline {
         pollSCM('* * * * *')
     }
     stages {
-        stage('Pullcode') {
-            steps {
-                git 'https://github.com/suriyaJaboon/demo-tdd1.git'
-            }
-        }
+        // stage('Pullcode') {
+        //     steps {
+        //         git 'https://github.com/suriyaJaboon/demo-tdd1.git'
+        //     }
+        // }
         stage('Testing') {
+            when {
+                branch 'develop'
+            }
             steps {
                 sh "mvn clean test"
                 junit 'target/surefire-reports/*.xml'
             }
         }
         stage('Package') {
+            when {
+                branch 'develop'
+            }
             steps { 
-                sh "mvn package"
+                sh "mvn clean package"
             }
         }
         stage('Code coverage') {
@@ -30,8 +36,5 @@ pipeline {
             always {
                 junit 'target/surefire-reports/*.xml'
             }
-            // failure {
-            //     mail to: team@example.com, subject: 'The Pipeline failed :('
-            // }
         }
 }
