@@ -82,8 +82,8 @@ pipeline {
             always {
                 junit 'target/surefire-reports/*.xml'
             }
-            failure {
-                mail to: team@example.com, subject: 'The Pipeline failed :('
-            }
+            // failure {
+            //     mail to: team@example.com, subject: 'The Pipeline failed :('
+            // }
         }
 }
