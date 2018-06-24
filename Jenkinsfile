@@ -20,7 +20,7 @@ pipeline {
         }
         stage('Package') {
             when {
-                branch 'develop'
+                branch 'master'
             }
             steps { 
                 sh "mvn clean package"
