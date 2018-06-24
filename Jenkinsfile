@@ -1,14 +1,15 @@
 pipeline {
     agent any
-        triggers {
-            pollSCM('* * * * *')
-        }
+    triggers {
+        pollSCM('* * * * *')
+    }
     stages {
         stage('Pullcode') {
             steps {
                 git 'https://github.com/suriyaJaboon/demo-tdd1.git'
             }
         }
+        
         stage('Build') {
             when {
                 branch 'master'
